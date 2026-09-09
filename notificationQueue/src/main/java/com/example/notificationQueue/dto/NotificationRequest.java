@@ -19,6 +19,9 @@ public class NotificationRequest {
     
     @NotBlank (message = "Message is required")
     private String message;
+    
+    @NotBlank (message =  "User id is required")
+    private Long userId;
 
     @NotBlank (message = "Priority is required")
     private Notifcation_Priority priority;

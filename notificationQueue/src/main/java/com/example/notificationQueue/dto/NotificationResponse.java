@@ -19,5 +19,6 @@ public class NotificationResponse {
     private String message;
     private Notification_Status status;
     private LocalDateTime createdAt;
+    private Long userId;
 
 }

@@ -43,7 +43,7 @@ public class UserService {
          throw e;
      }
      catch(RuntimeException e){
-         throw new RuntimeException("Error occured while fetching the user details " ,e);
+         throw e;
      }
     }
 
@@ -63,7 +63,7 @@ public class UserService {
         return userResponses;
     } 
      catch(RuntimeException e){
-         throw new RuntimeException("Error occured while fetching the user details " ,e);
+         throw e;
      }
     }
 
@@ -85,7 +85,7 @@ public class UserService {
         } catch (UserNotFoundException e) {
             throw e;
         } catch (RuntimeException e) {
-            throw new RuntimeException("Error occurred while fetching the user details", e);
+            throw e;
         }
 
     }
@@ -101,8 +101,27 @@ public class UserService {
                     .email(savedUser.getEmail())
                     .build();
         } catch (RuntimeException e) {
-            throw new RuntimeException("Error occurred while creating the user", e);
+           throw e;
         }
     }
     
+    public void  deleteUser(Long id){
+         
+        try {
+
+        log.info("Deleting user with id {}", id);
+
+        getUserById(id);
+
+        userRepository.deleteById(id);
+
+        log.info("User deleted successfully with id {}", id);
+
+    } catch (RuntimeException e) {
+
+        log.error("Error while deleting user with id {}", id, e);
+
+        throw e;
+    }
+    } 
 }
